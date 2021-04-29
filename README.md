@@ -170,10 +170,10 @@ Example FX:
 ### MULTI
 
 Convenience effect used to dispatch a vector of crux effects.
-(Not to be confused with Crux transactions)
+(Not to be confused with Crux transactions, however transaction(s) may also be included in the multi vector)
 
-:crux/multi will execute a 'vector of effects', for example,
-it can be used to execute multiple queries each with separate on-success callbacks
+`:crux/multi` will execute a 'vector of effects', for example,
+it can be used to execute multiple queries each with separate `on-success` callbacks
 
 Example FX:
 ```clj
