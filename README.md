@@ -20,29 +20,29 @@ _Note: This library is still in alpha, and not all of Crux's features are suppor
 
 [![Clojars Project](https://img.shields.io/clojars/v/com.github/wkok/re-frame-crux.svg)](https://clojars.org/com.github/wkok/re-frame-crux)
 
-- Add this project to your dependencies:
-Leiningen: `[com.github.wkok/re-frame-crux "0.1.0.alpha"]`
-Deps: `com.github.wkok/re-frame-crux {:mvn/version "0.1.0.alpha"}`
+* Add this project to your dependencies
+    * Leiningen: `[com.github.wkok/re-frame-crux "0.1.0.alpha"]`
+    * Deps: `com.github.wkok/re-frame-crux {:mvn/version "0.1.0.alpha"}`
 
-- Require the main namespace in your code: 
-`(:require [wkok.re-frame-crux])`
+* Require the main namespace in your code
+    * `(:require [wkok.re-frame-crux])`
 
-- Configure a proxy in your ClojureScript compiler:
-_Note, due to the fact that your ClojureScript code will need to make ajax calls to a host (Crux) which is not the same as the host from which the browser downloads the compiled Javascript, we need to proxy requests to Crux via the shadow-cljs http-server in order not to violate the browser's [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)_
+* [Configure a proxy in your ClojureScript compiler](https://shadow-cljs.github.io/docs/UsersGuide.html#dev-http-proxy)
+    * _Due to the fact that your ClojureScript code will need to make ajax calls to a host (Crux) which is not the same as the host from which the browser downloads the compiled Javascript, we need to proxy requests to Crux via the shadow-cljs http-server in order not to violate the browser's [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)_
 
 `shadow-cljs.edn`
-```clojurescript
+```clj
 {:builds {:app {:devtools { :proxy-url "http://localhost:3000"}}}}
 ```
 
-- Start a local instance of Crux:
+* Start a local instance of Crux
 
 `docker`
-```sh
+```bash
 docker run -p 3000:3000 juxt/crux-in-memory:21.04-1.16.0
 ```
 
-For alternative options to start a Crux instance, see [installation](https://opencrux.com/reference/installation.html) or [howto](https://opencrux.com/howto)
+For more options to start a local Crux instance, see [howto](https://opencrux.com/howto) and [installation](https://opencrux.com/reference/installation.html)
 
 ## Usage
 
@@ -56,15 +56,14 @@ Puts a Document map into Crux
 See https://opencrux.com/reference/transactions.html#put
 
 Key arguments:
-- :doc             Map corresponding to the document.
-                   (The :crux.db/id key is optional, if not provided, a UUID will be injected)
-- :valid-time      Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
-- :end-valid-time  Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
-- :on-success      Function or re-frame event vector to be dispatched.
-- :on-failure      Function or re-frame event vector to be dispatched.
+- `:doc`             Map corresponding to the document. (The `:crux.db/id` key is optional, if not provided, a UUID will be injected)
+- `:valid-time`      Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
+- `:end-valid-time`  Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
+- `:on-success`      Function or re-frame event vector to be dispatched.
+- `:on-failure`      Function or re-frame event vector to be dispatched.
 
 Example FX:
-```clojurescript
+```clj
 (rf/reg-event-fx
   :put-president
   (fn [_ [_ _]]
@@ -81,15 +80,15 @@ Returns the document map for a particular entity
 See: https://opencrux.com/reference/http.html#entity
 
 Key arguments:
-- :id              Document ID
-- :valid-time      Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
-- :tx-time         Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
-- :tx-id           Optional. Transaction ID
-- :on-success      Function or re-frame event vector to be dispatched.
-- :on-failure      Function or re-frame event vector to be dispatched.
+- `:id`              Document ID
+- `:valid-time`      Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
+- `:tx-time`         Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
+- `:tx-id`           Optional. Transaction ID
+- `:on-success`      Function or re-frame event vector to be dispatched.
+- `:on-failure`      Function or re-frame event vector to be dispatched.
 
 Example FX:
-```clojurescript
+```clj
 (rf/reg-event-fx
   :get-president
   (fn [_ [_ _]]
@@ -104,14 +103,14 @@ Deletes a Document from Crux
 See https://opencrux.com/reference/transactions.html#delete
 
 Key arguments:
-- :id              Document ID to be deleted
-- :valid-time      Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
-- :end-valid-time  Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
-- :on-success      Function or re-frame event vector to be dispatched.
-- :on-failure      Function or re-frame event vector to be dispatched.
+- `:id`              Document ID to be deleted
+- `:valid-time`      Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
+- `:end-valid-time`  Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
+- `:on-success`      Function or re-frame event vector to be dispatched.
+- `:on-failure`      Function or re-frame event vector to be dispatched.
 
 Example FX:
-```clojurescript
+```clj
 (rf/reg-event-fx
   :delete-president
   (fn [_ [_ _]]
@@ -126,12 +125,12 @@ Takes a datalog query and returns its results
 See https://opencrux.com/reference/queries.html
 
 Key arguments:
-- :query       Quoted EDN Map containing the Datalog query
-- :on-success  Function or re-frame event vector to be dispatched.
-- :on-failure  Function or re-frame event vector to be dispatched.
+- `:query`       Quoted EDN Map containing the Datalog query
+- `:on-success`  Function or re-frame event vector to be dispatched.
+- `:on-failure`  Function or re-frame event vector to be dispatched.
 
 Example FX:
-```clojurescript
+```clj
 (rf/reg-event-fx
   :find-presidents
   (fn [_ [_ _]]
@@ -149,12 +148,12 @@ Transactions are comprised of a vector of Transaction Operations to be performed
 See https://opencrux.com/reference/transactions.html
 
 Key arguments:
-- :ops         Vector consisting of transaction operations
-- :on-success  Function or re-frame event vector to be dispatched.
-- :on-failure  Function or re-frame event vector to be dispatched.
+- `:ops`         Vector consisting of transaction operations
+- `:on-success`  Function or re-frame event vector to be dispatched.
+- `:on-failure`  Function or re-frame event vector to be dispatched.
 
 Example FX:
-```clojurescript
+```clj
 (rf/reg-event-fx
   :rotate-presidents
   (fn [_ [_ _]]
@@ -177,7 +176,7 @@ Convenience effect used to dispatch a vector of crux effects.
 it can be used to execute multiple queries each with separate on-success callbacks
 
 Example FX:
-```clojurescript
+```clj
 (rf/reg-event-fx
   :do-many-things
   (fn [_ [_ _]]
@@ -203,7 +202,7 @@ The Crux HTTP Server can be configured to require athentication, by adding a JWT
 
 A JWT key set can be generated with this utility [Command line JSON Web Key](https://connect2id.com/products/nimbus-jose-jwt/generator)
 
-Your application is responsible for handling authentication with some authentication provider and populate the received JWT token (signed with the same key configured in Crux) in the re-frame app db under the :crux -> :jwt key like this: `{:crux {:jwt "mytoken"}}`
+Your application is responsible for handling authentication with some authentication provider and populate the received JWT token (signed with the same key configured in Crux) in the re-frame app db under the `:crux` -> `:jwt` key like this: `{:crux {:jwt "mytoken"}}`
 
 If this JWT token is set in the re-frame app-db, every request from this library to Crux will contain the token in the HTTP Authorization header.
 
@@ -215,14 +214,14 @@ Some things to keep in mind before launching your brand new 'serverless' applica
 
 - Consider whether the Crux endpoint should be served securely over HTTPS by putting an HTTPS load balancer in front of it.
 - Consider configuring Crux to require JWT authentication (see above)
-- You'd probably need to write some server side code, at least to implement authorization rules over your data. Remember, even with authentication configured in Crux, any authenticated user will have full read/write access to all data, which might not be what you want. See: https://opencrux.com/reference/http.html#_ring_handler
+- You'd probably need to write some server side code, at least to implement authorization rules over your data. Remember, even with authentication configured in Crux, any authenticated user will have full read/write access to all data, which might not be what you want. To get you started, Crux exposes a Ring handler, see: https://opencrux.com/reference/http.html#_ring_handler
 
-### CORS
+### Cross-Origin Resource Sharing (CORS)
 
-If your compiled Javascript is not downloaded from the same HTTP Server that is running the Crux REST API, you'll need to honour the browser's CORS policy. Here's two options:
+If your compiled Javascript is not downloaded from the same HTTP Server that is running the Crux REST API, you'll still need to honour the browser's [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) policy. Here's two options:
 
-- Configure [ProxyPass](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) rules in your load balancer to proxy any requests for /_crux/... to the Crux REST endpoint
-- Or, in your own [Ring-compatible server hosting Crux](https://opencrux.com/reference/http.html#_ring_handler), consider middleware like [ring-cors](https://github.com/r0man/ring-cors), and add the public URL for this Ring server to in the re-frame app db under the :crux -> :url key like this: `{:crux {:url "https://url-to-crux"}}`
+- Configure [ProxyPass](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) rules in your load balancer to proxy any requests for `/_crux/*` to the Crux REST endpoint
+- Or, in your own [Ring-compatible server hosting Crux](https://opencrux.com/reference/http.html#_ring_handler), consider middleware like [ring-cors](https://github.com/r0man/ring-cors), and add the public URL for this Ring server in the re-frame app db under the `:crux` -> `:url` key like this: `{:crux {:url "https://url-to-crux"}}`
 
 
 ## License
