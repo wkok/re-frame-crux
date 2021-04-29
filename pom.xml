@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.github.wkok</groupId>
+  <groupId>net.clojars.wkok</groupId>
   <artifactId>re-frame-crux</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
-  <name>com.github.wkok/re-frame-crux</name>
+  <version>0.1.0.alpha</version>
+  <name>re-frame-crux</name>
   <description>re-frame effects for communicating with a Crux database via its REST API</description>
   <url>https://github.com/wkok/re-frame-crux</url>
   <licenses>
     <license>
       <name>MIT License</name>
-      <url>https://choosealicense.com/licenses/mit/</url>
+      <url>https://github.com/wkok/re-frame-crux/blob/master/LICENSE</url>
     </license>
   </licenses>
   <developers>
@@ -22,13 +22,23 @@
     <url>https://github.com/wkok/re-frame-crux</url>
     <connection>scm:git:git://github.com/wkok/re-frame-crux.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/wkok/re-frame-crux.git</developerConnection>
-    <tag>v0.1.0-SNAPSHOT</tag>
+    <tag>v0.1.0.alpha</tag>
   </scm>
   <dependencies>
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>clojure</artifactId>
       <version>1.10.3</version>
+    </dependency>
+    <dependency>
+      <groupId>re-frame</groupId>
+      <artifactId>re-frame</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>cljs-ajax</groupId>
+      <artifactId>cljs-ajax</artifactId>
+      <version>0.8.1</version>
     </dependency>
   </dependencies>
   <build>
@@ -38,10 +48,6 @@
     <repository>
       <id>clojars</id>
       <url>https://repo.clojars.org/</url>
-    </repository>
-    <repository>
-      <id>sonatype</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
     </repository>
   </repositories>
   <distributionManagement>

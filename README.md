@@ -18,11 +18,11 @@ _Note: This library is still in alpha, and not all of Crux's features are suppor
 
 ## Configuration
 
-[![Clojars Project](https://img.shields.io/clojars/v/com.github/wkok/re-frame-crux.svg)](https://clojars.org/com.github/wkok/re-frame-crux)
+[![Clojars Project](https://img.shields.io/clojars/v/net.clojars.wkok/re-frame-crux.svg)](https://clojars.org/net.clojars.wkok/re-frame-crux)
 
 * Add this project to your dependencies
-    * Leiningen: `[com.github.wkok/re-frame-crux "0.1.0.alpha"]`
-    * Deps: `com.github.wkok/re-frame-crux {:mvn/version "0.1.0.alpha"}`
+    * Leiningen/Boot: `[net.clojars.wkok/re-frame-crux "0.1.0.alpha"]`
+    * Clojure CLI/deps.edn: `net.clojars.wkok/re-frame-crux {:mvn/version "0.1.0.alpha"}`
 
 * Require the main namespace in your code
     * `(:require [wkok.re-frame-crux])`
@@ -67,11 +67,11 @@ Example FX:
 (rf/reg-event-fx
   :put-president
   (fn [_ [_ _]]
-    {:crux/put {:doc     {:crux.db/id           :president/biden
-                          :president/first-name "Joe"
-                          :president/last-name  "Biden"}
-             :on-success [:success-event]
-             :on-failure #(js/console.log %)}}))
+    {:crux/put {:doc        {:crux.db/id           :president/biden
+                             :president/first-name "Joe"
+                             :president/last-name  "Biden"}
+                :on-success [:success-event]
+                :on-failure #(js/console.log %)}}))
 ```
 
 ### GET
@@ -226,7 +226,7 @@ If your compiled Javascript is not downloaded from the same HTTP Server that is 
 
 ## License
 
-[MIT License](https://choosealicense.com/licenses/mit/)
+[MIT License](https://github.com/wkok/re-frame-crux/blob/master/LICENSE)
 
 Copyright (c) 2021 Werner Kok
 
