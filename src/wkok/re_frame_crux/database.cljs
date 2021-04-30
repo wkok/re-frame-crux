@@ -8,7 +8,7 @@
   []
   (let [jwt @(rf/subscribe [:crux/jwt])]
     (-> {}
-        (cond-> jwt (assoc "authorization" (str "Bearer " @(rf/subscribe [:crux/jwt])))))))
+        (cond-> jwt (assoc "authorization" (str "Bearer " jwt))))))
 
 (defn event->fn
   "Converts a re-frame event vector to a function that can be passed as cljs-ajax callbacks"
