@@ -37,7 +37,7 @@ jobs:
 
     - name: Test
       run: |
-        clojure -A:shadow-cljs release ci
+        clojure -A:test compile ci
         ./node_modules/karma/bin/karma start --single-run || true
 
     - name: Publish Test Report
