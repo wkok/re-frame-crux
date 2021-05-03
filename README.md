@@ -1,5 +1,7 @@
 # re-frame-crux
 
+![CI](https://github.com/wkok/re-frame-crux/workflows/CI/badge.svg)
+
 [re-frame](https://github.com/day8/re-frame) effects for communicating with a [Crux](https://opencrux.com/main/index.html) database via its REST API
 
 ## Overview
@@ -24,7 +26,7 @@ _Note: This library is still in alpha, and not all of Crux's features are suppor
     * Leiningen/Boot: `[net.clojars.wkok/re-frame-crux "0.1.0.alpha"]`
     * Clojure CLI/deps.edn: `net.clojars.wkok/re-frame-crux {:mvn/version "0.1.0.alpha"}`
 
-* Require the main namespace in your code
+* Require the main namespace in your code. This will register the required effects & subscriptions.
     * `(:require [wkok.re-frame-crux])`
 
 * [Configure a proxy in your ClojureScript compiler](https://shadow-cljs.github.io/docs/UsersGuide.html#dev-http-proxy)
