@@ -16,15 +16,15 @@ It is similar to the idea of the [Firebase Javascript SDK](https://firebase.goog
 
 In fact this library borrows some of the ideas & structure from the very usefull [re-frame-firebase](https://github.com/deg/re-frame-firebase) library from David Goldfarb.
 
-_Note: This library is still in alpha, and not all of Crux's features are supported yet. I am receptive to feature requests and happy to accept PRs_
+_Note: This library is still in alpha, however, the most common Crux features should already be supported. I am open to feature requests and happy to accept PRs_
 
 ## Configuration
 
 [![Clojars Project](https://img.shields.io/clojars/v/net.clojars.wkok/re-frame-crux.svg)](https://clojars.org/net.clojars.wkok/re-frame-crux)
 
 * Add this project to your dependencies
-    * Leiningen/Boot: `[net.clojars.wkok/re-frame-crux "0.1.0.alpha"]`
-    * Clojure CLI/deps.edn: `net.clojars.wkok/re-frame-crux {:mvn/version "0.1.0.alpha"}`
+    * Leiningen/Boot: `[net.clojars.wkok/re-frame-crux "0.2.0-alpha"]`
+    * Clojure CLI/deps.edn: `net.clojars.wkok/re-frame-crux {:mvn/version "0.2.0-alpha"}`
 
 * Require the main namespace in your code. This will register the required effects & subscriptions.
     * `(:require [wkok.re-frame-crux])`

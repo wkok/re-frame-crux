@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.clojars.wkok</groupId>
   <artifactId>re-frame-crux</artifactId>
-  <version>0.1.0.alpha</version>
+  <version>0.2.0-alpha</version>
   <name>re-frame-crux</name>
   <description>re-frame effects for communicating with a Crux database via its REST API</description>
   <url>https://github.com/wkok/re-frame-crux</url>
@@ -22,7 +22,6 @@
     <url>https://github.com/wkok/re-frame-crux</url>
     <connection>scm:git:git://github.com/wkok/re-frame-crux.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/wkok/re-frame-crux.git</developerConnection>
-    <tag>v0.1.0.alpha</tag>
   </scm>
   <dependencies>
     <dependency>
