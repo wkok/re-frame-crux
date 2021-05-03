@@ -93,7 +93,7 @@ should be picked up from a subscription and added to the authorization header"
     (is (= "/_crux/entity?eid-edn=:president/trump"
            (database/make-entity-url {:id :president/trump})))
     (is (= "/_crux/entity?eid=trump"
-           (database/make-entity-url {:id "trump"})))))
+           (database/make-entity-url {:id "trump1"})))))
 
 (rf/reg-event-fx
   :initialize-test-db

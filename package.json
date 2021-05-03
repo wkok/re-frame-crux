@@ -1,16 +1,17 @@
 {
-  "name": "tests",
-  "version": "1.0.0",
-  "description": "Testing",
-  "devDependencies": {
-    "karma": "^2.0.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-cljs-test": "^0.1.0"
-  },
-  "author": "Werner Kok",
-  "license": "MIT",
-  "dependencies": {
-    "react": "17.0.1",
-    "react-dom": "17.0.1"
-  }
+    "name": "tests",
+    "version": "1.0.0",
+    "description": "Testing",
+    "devDependencies": {
+      "karma": "^2.0.0",
+      "karma-chrome-launcher": "^2.2.0",
+      "karma-cljs-test": "^0.1.0",
+      "karma-junit-reporter": "^2.0.1"
+    },
+    "author": "Werner Kok",
+    "license": "MIT",
+    "dependencies": {
+        "react": "17.0.1",
+        "react-dom": "17.0.1"
+    }
 }
