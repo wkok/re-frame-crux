@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          .cpcache
+          .shadow-cljs
+          node_modules
+          ~/.m2/repository
+        key: ${{ runner.os }}-deps-${{ hashFiles('**/deps.edn', '**/package-lock.json') }}
+
+    - name: Setup Clojure
+      uses: DeLaGuardo/setup-clojure@3.0
+      with:
+        tools-deps: '1.10.1.469'      
+
+    - name: Prepare
+      run: npm install
+
+    - name: Test
+      run: |
+        clojure -A:shadow-cljs release ci
+        ./node_modules/karma/bin/karma start --single-run || true
+
+    - name: Publish Test Report
+      uses: scacap/action-surefire-report@v1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        report_paths: '**/karma/results/TESTS-*.xml'
