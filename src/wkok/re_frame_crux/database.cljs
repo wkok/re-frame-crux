@@ -2,7 +2,8 @@
   (:require [ajax.core :refer [GET POST]]
             [ajax.edn :refer [edn-request-format]]
             [re-frame.core :as rf]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [wkok.re-frame-crux.spec :as spec]))
 
 (defn set-headers
   "Sets HTTP request headers"
@@ -39,7 +40,8 @@
   "See the doc for the :crux/submit-tx effect in the re-frame-crux namespace"
   [options]
   (POST (crux-url "/_crux/submit-tx")
-        (submit-tx-payload options)))
+        (-> (spec/conform ::spec/tx-options options)
+            submit-tx-payload)))
 
 (defn query-payload
   [{:keys [query valid-time tx-time tx-id] :as options}]
@@ -54,7 +56,8 @@
   "See the doc for the :crux/query effect in the re-frame-crux namespace"
   [options]
   (POST (crux-url "/_crux/query")
-        (query-payload options)))
+        (-> (spec/conform ::spec/query-options options)
+            query-payload)))
 
 (defn with-crux-id
   [{:keys [doc]}]
@@ -75,7 +78,8 @@
 (defn put-effect!
   "See the doc for the :crux/put effect in the re-frame-crux namespace"
   [options]
-  (->> (with-crux-id options)
+  (->> (spec/conform ::spec/put-options options)
+       with-crux-id
        (make-put-op options)
        (tx-payload options)
        submit-tx-effect!))
@@ -89,9 +93,10 @@
 (defn delete-effect!
   "See the doc for the :crux/delete effect in the re-frame-crux namespace"
   [options]
-  (-> (make-delete-op options)
-      (tx-payload options)
-      submit-tx-effect!))
+  (->> (spec/conform ::spec/delete-options options)
+       make-delete-op
+       (tx-payload options)
+       submit-tx-effect!))
 
 (defn make-entity-url
   [{:keys [id valid-time tx-time tx-id]}]
@@ -104,8 +109,9 @@
 
 (defn get-effect!
   "See the doc for the :crux/get effect in the re-frame-crux namespace"
-  [{:keys [on-success on-failure] :as options}]
-  (GET (make-entity-url options)
-       {:handler       (or (event->fn on-success) js/console.log)
-        :error-handler (or (event->fn on-failure) js/console.log)}))
+  [input]
+  (let [{:keys [on-success on-failure] :as options} (spec/conform ::spec/get-options input)]
+    (GET (make-entity-url options)
+         {:handler       (or (event->fn on-success) js/console.log)
+          :error-handler (or (event->fn on-failure) js/console.log)})))
 

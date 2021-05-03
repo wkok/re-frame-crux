@@ -17,8 +17,8 @@
 ;;                    (The :crux.db/id key is optional, if not provided, a UUID will be injected)
 ;; - :valid-time      Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
 ;; - :end-valid-time  Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
-;; - :on-success      Function or re-frame event vector to be dispatched.
-;; - :on-failure      Function or re-frame event vector to be dispatched.
+;; - :on-success      Optional. Function or re-frame event vector to be dispatched. If not set, will be logged to console.
+;; - :on-failure      Optional. Function or re-frame event vector to be dispatched. If not set, will be logged to console.
 ;;
 ;; Example FX:
 ;; {:crux/put {:doc        {:crux.db/id           :president/biden
@@ -38,8 +38,8 @@
 ;; - :valid-time      Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
 ;; - :tx-time         Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
 ;; - :tx-id           Optional. Transaction ID
-;; - :on-success      Function or re-frame event vector to be dispatched.
-;; - :on-failure      Function or re-frame event vector to be dispatched.
+;; - :on-success      Optional. Function or re-frame event vector to be dispatched. If not set, will be logged to console.
+;; - :on-failure      Optional. Function or re-frame event vector to be dispatched. If not set, will be logged to console.
 ;;
 ;; Example FX:
 ;; {:crux/get {:id         :president/biden
@@ -56,8 +56,8 @@
 ;; - :id              Document ID to be deleted
 ;; - :valid-time      Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
 ;; - :end-valid-time  Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
-;; - :on-success      Function or re-frame event vector to be dispatched.
-;; - :on-failure      Function or re-frame event vector to be dispatched.
+;; - :on-success      Optional. Function or re-frame event vector to be dispatched. If not set, will be logged to console.
+;; - :on-failure      Optional. Function or re-frame event vector to be dispatched. If not set, will be logged to console.
 ;;
 ;; Example FX:
 ;; {:crux/delete {:id         :president/trump
@@ -72,8 +72,8 @@
 ;;
 ;; Key arguments:
 ;; - :query       Quoted EDN Map containing the Datalog query
-;; - :on-success  Function or re-frame event vector to be dispatched.
-;; - :on-failure  Function or re-frame event vector to be dispatched.
+;; - :on-success  Optional. Function or re-frame event vector to be dispatched. If not set, will be logged to console.
+;; - :on-failure  Optional. Function or re-frame event vector to be dispatched. If not set, will be logged to console.
 ;;
 ;; Example FX:
 ;; {:crux/query {:query      '{:find  [?first-name ?last-name]
@@ -91,8 +91,8 @@
 ;;
 ;; Key arguments:
 ;; - :ops         Vector consisting of transaction operations
-;; - :on-success  Function or re-frame event vector to be dispatched.
-;; - :on-failure  Function or re-frame event vector to be dispatched.
+;; - :on-success  Optional. Function or re-frame event vector to be dispatched. If not set, will be logged to console.
+;; - :on-failure  Optional. Function or re-frame event vector to be dispatched. If not set, will be logged to console.
 ;;
 ;; Example FX:
 ;; {:crux/submit-tx {:ops        [[:crux.tx/put {:crux.db/id :president/biden :president/first-name "Joe"}]
@@ -131,6 +131,7 @@
     (run! (fn [[effect-type args]]
             (case effect-type
               :crux/put       (database/put-effect! args)
+              :crux/get       (database/get-effect! args)
               :crux/delete    (database/delete-effect! args)
               :crux/query     (database/query-effect args)
               :crux/submit-tx (database/submit-tx-effect! args)

@@ -59,9 +59,9 @@ See https://opencrux.com/reference/transactions.html#put
 
 Key arguments:
 - `:doc`             Map corresponding to the document. (The `:crux.db/id` key is optional, if not provided, a UUID will be injected)
-- `:valid-time`      Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
-- `:end-valid-time`  Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
-- `:on-success`      Function or re-frame event vector to be dispatched.
+- `:valid-time`      Optional. Example: `#inst "1985-04-12"` See: https://opencrux.com/reference/transactions.html#valid-times
+- `:end-valid-time`  Optional. Example: `#inst "1985-04-12"` See: https://opencrux.com/reference/transactions.html#valid-times
+- `:on-success`      Function or re-frame event vector to be dispatched with the result in EDN.
 - `:on-failure`      Function or re-frame event vector to be dispatched.
 
 Example FX:
@@ -83,10 +83,10 @@ See: https://opencrux.com/reference/http.html#entity
 
 Key arguments:
 - `:id`              Document ID
-- `:valid-time`      Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
-- `:tx-time`         Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
+- `:valid-time`      Optional. Example: `#inst "1985-04-12"` See: https://opencrux.com/reference/transactions.html#valid-times
+- `:tx-time`         Optional. Example: `#inst "1985-04-12"` See: https://opencrux.com/reference/transactions.html#valid-times
 - `:tx-id`           Optional. Transaction ID
-- `:on-success`      Function or re-frame event vector to be dispatched.
+- `:on-success`      Function or re-frame event vector to be dispatched with the result in EDN.
 - `:on-failure`      Function or re-frame event vector to be dispatched.
 
 Example FX:
@@ -106,9 +106,9 @@ See https://opencrux.com/reference/transactions.html#delete
 
 Key arguments:
 - `:id`              Document ID to be deleted
-- `:valid-time`      Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
-- `:end-valid-time`  Optional. Example: "2017-01-20" See: https://opencrux.com/reference/transactions.html#valid-times
-- `:on-success`      Function or re-frame event vector to be dispatched.
+- `:valid-time`      Optional. Example: `#inst "1985-04-12"` See: https://opencrux.com/reference/transactions.html#valid-times
+- `:end-valid-time`  Optional. Example: `#inst "1985-04-12"` See: https://opencrux.com/reference/transactions.html#valid-times
+- `:on-success`      Function or re-frame event vector to be dispatched with the result in EDN.
 - `:on-failure`      Function or re-frame event vector to be dispatched.
 
 Example FX:
@@ -128,7 +128,7 @@ See https://opencrux.com/reference/queries.html
 
 Key arguments:
 - `:query`       Quoted EDN Map containing the Datalog query
-- `:on-success`  Function or re-frame event vector to be dispatched.
+- `:on-success`  Function or re-frame event vector to be dispatched with the result in EDN.
 - `:on-failure`  Function or re-frame event vector to be dispatched.
 
 Example FX:
@@ -151,7 +151,7 @@ See https://opencrux.com/reference/transactions.html
 
 Key arguments:
 - `:ops`         Vector consisting of transaction operations
-- `:on-success`  Function or re-frame event vector to be dispatched.
+- `:on-success`  Function or re-frame event vector to be dispatched with the result in EDN.
 - `:on-failure`  Function or re-frame event vector to be dispatched.
 
 Example FX:
