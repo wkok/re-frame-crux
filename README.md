@@ -61,8 +61,8 @@ Key arguments:
 - `:doc`             Map corresponding to the document. (The `:crux.db/id` key is optional, if not provided, a UUID will be injected)
 - `:valid-time`      Optional. Example: `#inst "1985-04-12"` See: https://opencrux.com/reference/transactions.html#valid-times
 - `:end-valid-time`  Optional. Example: `#inst "1985-04-12"` See: https://opencrux.com/reference/transactions.html#valid-times
-- `:on-success`      Function or re-frame event vector to be dispatched with the result in EDN.
-- `:on-failure`      Function or re-frame event vector to be dispatched.
+- `:on-success`      Optional. Function or re-frame event vector to be dispatched with the result in EDN. If not specified, result will be logged to console.
+- `:on-failure`      Optional. Function or re-frame event vector to be dispatched.
 
 Example FX:
 ```clj
@@ -86,8 +86,8 @@ Key arguments:
 - `:valid-time`      Optional. Example: `#inst "1985-04-12"` See: https://opencrux.com/reference/transactions.html#valid-times
 - `:tx-time`         Optional. Example: `#inst "1985-04-12"` See: https://opencrux.com/reference/transactions.html#valid-times
 - `:tx-id`           Optional. Transaction ID
-- `:on-success`      Function or re-frame event vector to be dispatched with the result in EDN.
-- `:on-failure`      Function or re-frame event vector to be dispatched.
+- `:on-success`      Optional. Function or re-frame event vector to be dispatched with the result in EDN. If not specified, result will be logged to console.
+- `:on-failure`      Optional. Function or re-frame event vector to be dispatched.
 
 Example FX:
 ```clj
@@ -108,8 +108,8 @@ Key arguments:
 - `:id`              Document ID to be deleted
 - `:valid-time`      Optional. Example: `#inst "1985-04-12"` See: https://opencrux.com/reference/transactions.html#valid-times
 - `:end-valid-time`  Optional. Example: `#inst "1985-04-12"` See: https://opencrux.com/reference/transactions.html#valid-times
-- `:on-success`      Function or re-frame event vector to be dispatched with the result in EDN.
-- `:on-failure`      Function or re-frame event vector to be dispatched.
+- `:on-success`      Optional. Function or re-frame event vector to be dispatched with the result in EDN. If not specified, result will be logged to console.
+- `:on-failure`      Optional. Function or re-frame event vector to be dispatched.
 
 Example FX:
 ```clj
@@ -128,8 +128,8 @@ See https://opencrux.com/reference/queries.html
 
 Key arguments:
 - `:query`       Quoted EDN Map containing the Datalog query
-- `:on-success`  Function or re-frame event vector to be dispatched with the result in EDN.
-- `:on-failure`  Function or re-frame event vector to be dispatched.
+- `:on-success`  Optional. Function or re-frame event vector to be dispatched with the result in EDN. If not specified, result will be logged to console.
+- `:on-failure`  Optional. Function or re-frame event vector to be dispatched.
 
 Example FX:
 ```clj
@@ -151,8 +151,8 @@ See https://opencrux.com/reference/transactions.html
 
 Key arguments:
 - `:ops`         Vector consisting of transaction operations
-- `:on-success`  Function or re-frame event vector to be dispatched with the result in EDN.
-- `:on-failure`  Function or re-frame event vector to be dispatched.
+- `:on-success`  Optional. Function or re-frame event vector to be dispatched with the result in EDN. If not specified, result will be logged to console.
+- `:on-failure`  Optional. Function or re-frame event vector to be dispatched.
 
 Example FX:
 ```clj
