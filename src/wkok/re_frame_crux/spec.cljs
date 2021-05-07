@@ -50,7 +50,6 @@
                              :opt-un [::on-success
                                       ::on-failure
                                       ::valid-time
-                                      ::end-valid-time
                                       ::tx-time
                                       ::tx-id]))
 
@@ -62,7 +61,10 @@
 
 (s/def ::query-options (s/keys :req-un [::query]
                                :opt-un [::on-success
-                                        ::on-failure]))
+                                        ::on-failure
+                                        ::valid-time
+                                        ::tx-time
+                                        ::tx-id]))
 
 (s/def ::tx-options (s/keys :req-un [::ops]
                             :opt-un [::on-success

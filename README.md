@@ -128,6 +128,9 @@ See https://opencrux.com/reference/queries.html
 
 Key arguments:
 - `:query`       Quoted EDN Map containing the Datalog query
+- `:valid-time`  Optional. Example: `#inst "1985-04-12"` See: https://opencrux.com/reference/transactions.html#valid-times
+- `:tx-time`     Optional. Example: `#inst "1985-04-12"` See: https://opencrux.com/reference/transactions.html#valid-times
+- `:tx-id`       Optional. Transaction ID
 - `:on-success`  Optional. Function or re-frame event vector to be dispatched with the result in EDN. If not specified, result will be logged to console.
 - `:on-failure`  Optional. Function or re-frame event vector to be dispatched.
 
