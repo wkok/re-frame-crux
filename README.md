@@ -2,7 +2,10 @@
 
 ![CI](https://github.com/wkok/re-frame-crux/workflows/CI/badge.svg)
 
-[re-frame](https://github.com/day8/re-frame) effects for communicating with a [Crux](https://opencrux.com/main/index.html) database via its REST API
+[re-frame](https://github.com/day8/re-frame) effects for communicating direct with a [Crux](https://opencrux.com/main/index.html) database via its REST API
+
+> "I don't read newspapers anymore, I just lie to myself and cut out the middleman."
+> -- Frankie Boyle
 
 ## Overview
 
@@ -34,7 +37,11 @@ _Note: This library is still in alpha, however, the most common Crux features sh
 
 `shadow-cljs.edn`
 ```clj
-{:builds {:app {:devtools { :proxy-url "http://localhost:3000"}}}}
+{...
+ :dev-http
+ {8280
+  {:root "public"
+   :proxy-url "http://localhost:3000"}}}
 ```
 
 * Start a local instance of Crux
