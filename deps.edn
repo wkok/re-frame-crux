@@ -1,7 +1,7 @@
 {:paths ["src"]
  :deps  {org.clojure/clojure {:mvn/version "1.10.3"}
          re-frame/re-frame   {:mvn/version "1.2.0"}
-         cljs-ajax/cljs-ajax {:mvn/version "0.8.1"}}
+         cljs-ajax/cljs-ajax {:mvn/version "0.8.3"}}
  :aliases
  {:test    {:extra-paths ["test"]
             :main-opts   ["-m" "shadow.cljs.devtools.cli"]

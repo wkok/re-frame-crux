@@ -70,6 +70,11 @@ should be picked up from a subscription and added to the authorization header"
               :error-handler on-failure}
              (database/query-payload options))))))
 
+(deftest make-query-url-test
+  (testing "Test that #inst gets correctly formatted to ISOString"
+    (is (= "/_crux/query?valid-time=2020-01-22T00:00:00.000Z&"
+           (database/make-query-url {:valid-time #inst "2020-01-22"})))))
+
 (deftest with-crux-id-test
   (testing "Test that the required :crux.db/id key is generated if not specified"
     (is (contains? (database/with-crux-id {:president/first-name "Joe"
@@ -89,11 +94,13 @@ should be picked up from a subscription and added to the authorization header"
            (database/make-delete-op {:id :president/trump})))))
 
 (deftest make-entity-url-test
-  (testing "Test that options get converted to a valid Crux /entity URL when the ID is specified as either a keyword or string"
+  (testing "Test that options get converted to a valid Crux /entity URL when the ID is specified as either a keyword or string or uuid"
     (is (= "/_crux/entity?eid-edn=:president/trump"
            (database/make-entity-url {:id :president/trump})))
     (is (= "/_crux/entity?eid=trump"
-           (database/make-entity-url {:id "trump"})))))
+           (database/make-entity-url {:id "trump"})))
+    (is (= "/_crux/entity?eid-edn=%23uuid \"94f8f299-9fbb-4b9e-a570-847d31f93447\""
+           (database/make-entity-url {:id #uuid "94f8f299-9fbb-4b9e-a570-847d31f93447"})))))
 
 (rf/reg-event-fx
   :initialize-test-db

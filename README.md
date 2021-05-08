@@ -23,8 +23,8 @@ _Note: This library is still in alpha, however, the most common Crux features sh
 [![Clojars Project](https://img.shields.io/clojars/v/net.clojars.wkok/re-frame-crux.svg)](https://clojars.org/net.clojars.wkok/re-frame-crux)
 
 * Add this project to your dependencies
-    * Leiningen/Boot: `[net.clojars.wkok/re-frame-crux "0.2.1-alpha"]`
-    * Clojure CLI/deps.edn: `net.clojars.wkok/re-frame-crux {:mvn/version "0.2.1-alpha"}`
+    * Leiningen/Boot: `[net.clojars.wkok/re-frame-crux "0.2.2-alpha"]`
+    * Clojure CLI/deps.edn: `net.clojars.wkok/re-frame-crux {:mvn/version "0.2.2-alpha"}`
 
 * Require the main namespace in your code. This will register the required effects & subscriptions.
     * `(:require [wkok.re-frame-crux])`

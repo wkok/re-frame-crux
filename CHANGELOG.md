@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.2.2-alpha - 2021-05-08
+
+### Fixed
+- Fixed issue where :valid-time, :tx-time and :tx-id, when set on :crux/query options map, was not correctly converted to query parameters before sending to Crux
+
 ## 0.2.1-alpha - 2021-05-08
 
 ### Fixed

@@ -44,18 +44,21 @@
             submit-tx-payload)))
 
 (defn query-payload
-  [{:keys [query valid-time tx-time tx-id] :as options}]
-  (-> (assoc options :params (-> {}
-                                 (cond-> query      (assoc :query query)
-                                         valid-time (assoc :valid-time valid-time)
-                                         tx-time    (assoc :tx-time tx-time)
-                                         tx-id      (assoc :tx-id tx-id))))
+  [{:keys [query] :as options}]
+  (-> (assoc options :params {:query query})
       to-cljs-ajax))
+
+(defn make-query-url
+  [{:keys [valid-time tx-time tx-id]}]
+  (str  (crux-url "/_crux/query?")
+        (when valid-time (str "valid-time=" (.toISOString valid-time) "&"))
+        (when tx-time (str "tx-time="  (.toISOString tx-time) "&"))
+        (when tx-id (str "tx-id=" (.toISOString tx-id) "&"))))
 
 (defn query-effect
   "See the doc for the :crux/query effect in the re-frame-crux namespace"
   [options]
-  (POST (crux-url "/_crux/query")
+  (POST (make-query-url options)
         (-> (spec/conform ::spec/query-options options)
             query-payload)))
 
@@ -101,11 +104,11 @@
 (defn make-entity-url
   [{:keys [id valid-time tx-time tx-id]}]
   (str  (crux-url "/_crux/entity")
-        (if (keyword? id) "?eid-edn=" "?eid=")
-        id
-        (when valid-time (str "&valid-time=" valid-time))
-        (when tx-time (str "&tx-time=" tx-time))
-        (when tx-id (str "&tx-id=" tx-id))))
+        (if (or (keyword? id) (uuid? id)) "?eid-edn=" "?eid=")
+        (if (uuid? id) (str "%23uuid \"" id "\"") id)
+        (when valid-time (str "&valid-time=" (.toISOString valid-time)))
+        (when tx-time (str "&tx-time=" (.toISOString tx-time)))
+        (when tx-id (str "&tx-id=" (.toISOString tx-id)))))
 
 (defn get-effect!
   "See the doc for the :crux/get effect in the re-frame-crux namespace"

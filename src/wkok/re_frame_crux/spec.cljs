@@ -5,7 +5,7 @@
                        (and (vector? %)
                             (-> % first keyword?))))
 
-(def string-or-keyword? #(or (string? %) (keyword? %)))
+(def string-or-keyword-or-uuid? #(or (string? %) (keyword? %) (uuid? %)))
 
 (def operation? #(and (vector? %)
                       (some #{(first %)} [:crux.tx/put
@@ -30,9 +30,9 @@
 
 (s/def ::tx-time inst?)
 
-(s/def ::tx-id string?)
+(s/def ::tx-id inst?)
 
-(s/def ::id string-or-keyword?)
+(s/def ::id string-or-keyword-or-uuid?)
 
 (s/def ::doc (s/map-of keyword? any?))
 
